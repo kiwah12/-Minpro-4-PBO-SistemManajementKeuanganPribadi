@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class KoneksiDataBase {
     private static final String URL = "jdbc:mysql://localhost:3306/db_keuangan_pribadi";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // Sesuaikan dengan password MySQL kamu.
+    private static final String PASSWORD = ""; 
 
     private KoneksiDataBase() { }
 
