@@ -14,21 +14,28 @@
 
 ## 1. **Deskripsi Singkat Program**
 
-Sistem Manajemen Keuangan Pribadi merupakan program berbasis Java yang digunakan untuk membantu pengguna dalam mencatat dan mengelola transaksi keuangan pribadi.
+Sistem Manajemen Keuangan Pribadi merupakan aplikasi berbasis Java yang digunakan untuk membantu pengguna mencatat dan mengelola transaksi keuangan, baik pemasukan maupun pengeluaran. Aplikasi ini dikembangkan sebagai bagian dari tugas Mini Project 4 mata kuliah Pemrograman Berorientasi Objek (PBO).
 
-Program menyediakan beberapa fitur utama, yaitu:
-1. Menambahkan data pemasukan.
-2. Menambahkan data pengeluaran.
-3. Menampilkan seluruh transaksi.
-4. Mengubah data transaksi.
-5. Menghapus data transaksi.
-6. Menampilkan ringkasan keuangan.
-7. Menghitung total pemasukan.
-8. Menghitung total pengeluaran.
-9. Menghitung saldo akhir.
+Pada pengembangan Mini Project 4, aplikasi diintegrasikan dengan database MySQL menggunakan JDBC (Java Database Connectivity). Pengelolaan data dilakukan melalui pola DAO (Data Access Object) dan menggunakan PreparedStatement untuk menjalankan perintah SQL.
 
-Program ini merupakan pengembangan dari Mini Project sebelumnya dengan menerapkan beberapa konsep Pemrograman Berorientasi Objek, yaitu encapsulation, inheritance, polymorphism, abstraction, serta struktur proyek MVC.
-Data transaksi disimpan menggunakan ArrayList sehingga data pemasukan dan pengeluaran dapat dikelola dalam satu struktur data.
+Dengan adanya database, data transaksi dapat disimpan secara permanen sehingga tidak hanya bergantung pada penyimpanan sementara di dalam program.
+
+Tujuan Proyek
+
+1. Menerapkan konsep Pemrograman Berorientasi Objek (PBO) dalam aplikasi Java.
+2. Mengelola data pemasukan dan pengeluaran keuangan.
+3. Menghubungkan aplikasi Java dengan database MySQL menggunakan JDBC.
+4. Menerapkan DAO untuk memisahkan proses pengolahan data dari logika aplikasi.
+5. Menggunakan PreparedStatement dalam menjalankan perintah SQL.
+
+Fitur Aplikasi
+
+Tambah Transaksi: Menambahkan data pemasukan atau pengeluaran.
+Lihat Semua Transaksi: Menampilkan daftar transaksi yang tersimpan di database.
+Ubah Transaksi: Memperbarui informasi transaksi yang sudah ada.
+Hapus Transaksi: Menghapus transaksi berdasarkan ID.
+Ringkasan Keuangan: Menampilkan informasi total pemasukan, total pengeluaran, dan saldo berdasarkan data transaksi.
+Penyimpanan Database: Menyimpan data transaksi ke dalam database MySQL.
 
 ## **2. Alur Program**
 
@@ -298,3 +305,54 @@ Penerapan interface terdiri dari:
 <img width="640" height="21" alt="image" src="https://github.com/user-attachments/assets/18c9f6eb-5525-4323-b0e1-189d71343d4f" />
 
 Dengan menggunakan interface, program dapat menentukan method yang harus tersedia pada bagian yang mengimplementasikannya. Penerapan interface juga membantu membuat struktur program menjadi lebih terorganisir dan memisahkan aturan method dari implementasinya. 
+
+## **12. Koneksi Database dengan JDBC**
+
+Pada Mini Project 4, aplikasi dikembangkan dengan menambahkan koneksi ke database MySQL menggunakan Java Database Connectivity (JDBC). Database yang digunakan bernama db_keuangan_pribadi, dengan tabel utama transaksi.
+
+Koneksi database digunakan agar data pemasukan dan pengeluaran dapat disimpan secara permanen, sehingga data tetap tersedia ketika aplikasi dijalankan kembali.
+
+Koneksi database dikelola melalui class KoneksiDataBase.java, yang menggunakan DriverManager.getConnection() untuk menghubungkan aplikasi Java dengan MySQL,Berikut screenshot Kode Koneksi.
+
+<img width="1132" height="461" alt="image" src="https://github.com/user-attachments/assets/fd575897-5e0d-4d37-8fee-b3e2cc4c7fc1" />
+
+## **13. Penerapan PreparedStatement**
+
+PreparedStatement digunakan untuk menjalankan perintah SQL dengan parameter yang dapat diisi melalui program Java.
+Pada aplikasi ini, PreparedStatement digunakan dalam operasi:
+
+**INSERT untuk menambahkan transaksi.**
+
+**SELECT untuk membaca dan menampilkan transaksi.**
+
+**UPDATE untuk mengubah data transaksi.**
+
+**DELETE untuk menghapus transaksi.**
+
+Penggunaan PreparedStatement membantu memisahkan perintah SQL dari nilai data yang dimasukkan pengguna serta mengurangi risiko SQL injection jika digunakan dengan benar,Berikut screenshot pom.xml.
+
+<img width="807" height="107" alt="image" src="https://github.com/user-attachments/assets/eca17bbb-fc11-4927-88fb-56963a546f11" />
+
+**14. Penerapan DAO (Data Access Object)**
+
+DAO merupakan pola desain yang digunakan untuk memisahkan proses akses database dari logika utama aplikasi.
+Penerapannya pada program ini terdiri dari:
+
+**TransaksiDAO.java** — interface yang mendefinisikan operasi pengelolaan data transaksi.
+
+**TransaksiDAOImpl.java** — class yang mengimplementasikan operasi database menggunakan JDBC dan PreparedStatement.
+
+**ProsesTransaksi.java** — bagian pengelolaan proses transaksi yang menggunakan DAO untuk berinteraksi dengan data.
+
+Dengan pola DAO, kode akses database menjadi lebih terstruktur dan lebih mudah dipelihara.Berikut screenshot TransaksiDAO.java.
+
+<img width="915" height="310" alt="image" src="https://github.com/user-attachments/assets/8c6e0f19-064e-4da4-bfdb-7cb48f123efb" />
+
+**15. Database dan Dummy Data**
+
+Database yang digunakan dalam aplikasi ini bernama db_keuangan_pribadi, dengan tabel transaksi.
+Tabel transaksi menyimpan informasi berikut:
+
+<img width="1357" height="427" alt="image" src="https://github.com/user-attachments/assets/13b7eca6-f7f3-4f46-9321-79e5d7f98731" />
+
+Dummy data awal disediakan melalui file db_keuangan_pribadi.sql, bukan dibuat melalui kode Java. File SQL tersebut berisi tiga data transaksi awal yang dapat digunakan untuk menguji fitur pembacaan data.
