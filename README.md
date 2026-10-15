@@ -276,7 +276,8 @@ Penerapan MVC terdiri dari:
 
 Dengan menggunakan MVC, program menjadi lebih terstruktur karena bagian data, tampilan, dan proses program dipisahkan sesuai dengan fungsinya. Pemisahan tersebut juga memudahkan proses pengembangan dan pemeliharaan program, berikut screenshot untuk MVC.
 
-<img width="411" height="357" alt="image" src="https://github.com/user-attachments/assets/5d2c5017-7d10-4d72-8e30-3b4e76b2d91e" />
+<img width="300" height="607" alt="image" src="https://github.com/user-attachments/assets/47368994-0c1b-457e-86a6-75d9f4f4eb15" />
+
 
 ## **10. Abstraction**
 
